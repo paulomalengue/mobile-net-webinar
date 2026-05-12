@@ -30,7 +30,7 @@ export function Footer() {
             </li>
             <li className="flex items-center gap-2">
               <Phone className="size-4 text-primary" />
-              <span>+244 925 857 040</span>
+              <span>+244 900 000 000</span>
             </li>
           </ul>
         </div>
@@ -55,34 +55,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 py-6 text-xs text-muted-foreground flex flex-wrap gap-2 justify-between">
           <span>© {new Date().getFullYear()} MobileNet. Todos os direitos reservados.</span>
-          <div className="flex items-center gap-2">
-            <img
-              src="/prag-logo.png"
-              alt="PRAG Soluções Tecnológicas"
-              className="h-6 w-auto object-contain"
-            />
-
-            <span>
-              Desenvolvido pela{" "}
-              <a
-                href="https://wa.me/244926203093"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0E5A9C] hover:underline"
-              >
-                PRAG Soluções Tecnológicas
-              </a>
-              {" · "}
-              <a
-                href="https://wa.me/244926203093"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                +244 926 203 093
-              </a>
-            </span>
-          </div>
+          <span>Feito com paixão por engenheiros de telecomunicações.</span>
         </div>
       </div>
     </footer>

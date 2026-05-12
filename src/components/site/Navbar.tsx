@@ -55,10 +55,11 @@ export function Navbar() {
 
           <a
             href="#inscricao"
-            className="hidden md:inline-flex items-center rounded-full bg-gradient-brand px-6 py-2.5 text-sm font-semibold text-primary-foreground hover:scale-105 hover:opacity-95 transition-all duration-300 shadow-xl shadow-primary/40 animate-pulse"
+            className="hidden md:inline-flex items-center rounded-full bg-gradient-brand px-5 py-2 text-sm font-medium text-primary-foreground hover:opacity-90 transition shadow-lg shadow-primary/30"
           >
-            Garantir Vaga Gratuita
+            Inscrever-se
           </a>
+
           <button
             className="md:hidden p-2 text-foreground"
             onClick={() => setOpen((v) => !v)}

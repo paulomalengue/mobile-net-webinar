@@ -2,24 +2,25 @@ import { Star } from "lucide-react";
 
 const items = [
   {
-    name: "João Malamba",
-    role: "Engenheiro Informático · Unitel",
-    text: "Webinar extremamente esclarecedor. Saí com uma visão muito mais clara sobre redes LTE e troubleshooting móvel.",
-    image: "/testimonials/joao.png",
+    name: "Carlos Mendes",
+    role: "Engenheiro de Rede · Unitel",
+    text: "Curso extremamente prático. Saí com uma visão clara de como o LTE realmente funciona em campo.",
+    initials: "CM",
   },
   {
-    name: "Celestino Adriano",
-    role: "Engenheiro em Electrónica e Telecomunicações · Unitel",
-    text: "“Num sector em constante evolução, iniciativas como esta aproximam a teoria da prática e contribuem significativamente para a capacitação de profissionais em GSM, UMTS, LTE e troubleshooting de redes móveis.”.",
-    image: "/testimonials/celestino.png",
+    name: "Joana Bartolomeu",
+    role: "Técnica NOC · Movicel",
+    text: "A melhor formação de telecomunicações que fiz. Os módulos de troubleshooting valem o curso inteiro.",
+    initials: "JB",
   },
   {
-    name: "Vallone daniel",
-    role: "Engenheiro em Electrónica e Telecomunicações ",
-    text: "As expectativas para este webinar são muito altas. A Mobile Connect Pro já demonstra um elevado nível técnico e uma abordagem bastante profissional.",
-    image: "/testimonials/valone.png",
+    name: "Ricardo Sousa",
+    role: "Estudante de Telecomunicações",
+    text: "Conteúdo de altíssimo nível, suporte rápido e uma comunidade incrível. Recomendo a 100%.",
+    initials: "RS",
   },
 ];
+
 export function Testimonials() {
   return (
     <section id="testemunhos" className="relative py-24 sm:py-32">
@@ -44,11 +45,9 @@ export function Testimonials() {
               </div>
               <p className="mt-4 text-foreground/90 leading-relaxed flex-1">"{t.text}"</p>
               <div className="mt-6 flex items-center gap-3">
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="size-11 rounded-full object-cover border border-primary/20"
-                />
+                <span className="grid place-items-center size-11 rounded-full bg-gradient-brand text-primary-foreground font-semibold">
+                  {t.initials}
+                </span>
                 <div>
                   <div className="text-sm font-semibold text-foreground">{t.name}</div>
                   <div className="text-xs text-muted-foreground">{t.role}</div>

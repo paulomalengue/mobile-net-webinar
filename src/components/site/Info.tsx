@@ -4,7 +4,7 @@ const info = [
   { icon: Calendar, label: "Data de início", value: "2 de Junho" },
   { icon: Clock, label: "Duração", value: "2 semanas" },
   { icon: Globe, label: "Modalidade", value: "100% Online" },
-  { icon: BadgeDollarSign, label: "Investimento", value: "Gratuito" },
+  { icon: BadgeDollarSign, label: "Investimento", value: "40.000 Kz" },
 ];
 
 export function Info() {

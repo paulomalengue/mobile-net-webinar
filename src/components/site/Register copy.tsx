@@ -1,8 +1,5 @@
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import emailjs from "@emailjs/browser";
-emailjs.init("LW-M_1DNqMbN-r6T3");
 
 type Field = "name" | "email" | "phone" | "profession" | "company";
 type Errors = Partial<Record<Field, string>>;
@@ -13,7 +10,7 @@ export function Register() {
     email: "",
     phone: "",
     profession: "",
-    company: ""
+    company: "",
   });
   const [errors, setErrors] = useState<Errors>({});
   const [loading, setLoading] = useState(false);
@@ -24,69 +21,23 @@ export function Register() {
 
   const validate = (): Errors => {
     const e: Errors = {};
-    if (!form.name.trim() || form.name.trim().length < 2)
-      e.name = "Nome obrigatório";
+    if (!form.name.trim() || form.name.trim().length < 2) e.name = "Nome obrigatório";
     if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) e.email = "Email inválido";
-    if (!form.phone.trim() || form.phone.trim().length < 6)
-      e.phone = "Telefone inválido";
+    if (!form.phone.trim() || form.phone.trim().length < 6) e.phone = "Telefone inválido";
     if (!form.profession.trim()) e.profession = "Profissão obrigatória";
     return e;
   };
 
-  const firstName = form.name?.trim().split(" ")[0] || "";
-
-  // reiniciar o form
-  const resetForm = () => {
-    setForm({
-      name: "",
-      email: "",
-      phone: "",
-      profession: "",
-      company: ""
-    });
-
-    setErrors({});
-    setSuccess(false);
-  };
-
   const onSubmit = async (ev: FormEvent) => {
     ev.preventDefault();
-
     const e = validate();
     setErrors(e);
-
     if (Object.keys(e).length) return;
-
     setLoading(true);
-
-    const { error } = await supabase.from("inscricoes").insert([
-      {
-        nome: form.name,
-        email: form.email,
-        telefone: form.phone,
-        profissao: form.profession,
-        empresa: form.company
-      }
-    ]);
-
+    // Simula envio — substituir por Formspree/Supabase/Firebase
+    await new Promise((r) => setTimeout(r, 1200));
     setLoading(false);
-
-    if (error) {
-      console.log(error);
-      alert("Erro ao enviar inscrição");
-      return;
-    }
-
-    try {
-      await emailjs.send("service_krsgmwu", "template_mthqqqo", {
-        name: form.name,
-        email: form.email
-      });
-      setSuccess(true);
-    } catch (err) {
-      console.log(err);
-      alert("Erro ao enviar email");
-    }
+    setSuccess(true);
   };
 
   return (
@@ -97,15 +48,12 @@ export function Register() {
 
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         <div className="max-w-2xl mx-auto text-center">
-          <span className="text-sm font-semibold text-gradient-brand">
-            INSCRIÇÃO
-          </span>
+          <span className="text-sm font-semibold text-gradient-brand">INSCRIÇÃO</span>
           <h2 className="mt-3 text-4xl sm:text-5xl font-bold text-gradient">
             Garanta a sua vaga
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
-            Vagas limitadas. Preencha o formulário e a nossa equipa entra em
-            contacto.
+            Vagas limitadas. Preencha o formulário e a nossa equipa entra em contacto.
           </p>
         </div>
 
@@ -115,29 +63,15 @@ export function Register() {
           {success ? (
             <div className="text-center py-10">
               <CheckCircle2 className="mx-auto size-16 text-primary" />
-
               <h3 className="mt-5 text-2xl font-bold text-foreground">
                 Inscrição recebida!
               </h3>
-
               <p className="mt-2 text-muted-foreground">
-                Obrigado{form.name ? `, ${form.name.split(" ")[0]}` : ""}.
-                Enviámos a confirmação para {form.email}.
+                Obrigado, {form.name.split(" ")[0]}. Enviámos a confirmação para {form.email}.
               </p>
-
-              <button
-                onClick={resetForm}
-                className="mt-8 inline-flex items-center justify-center rounded-full border border-primary/30 px-6 py-3 text-sm font-medium text-foreground hover:bg-primary/10 transition"
-              >
-                Fazer nova inscrição
-              </button>
             </div>
           ) : (
-            <form
-              onSubmit={onSubmit}
-              className="grid gap-5 sm:grid-cols-2"
-              noValidate
-            >
+            <form onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2" noValidate>
               <Field
                 label="Nome completo *"
                 value={form.name}
@@ -199,10 +133,7 @@ function Field({
   label,
   error,
   ...props
-}: React.InputHTMLAttributes<HTMLInputElement> & {
-  label: string;
-  error?: string;
-}) {
+}: React.InputHTMLAttributes<HTMLInputElement> & { label: string; error?: string }) {
   return (
     <label className="block">
       <span className="text-sm font-medium text-foreground/90">{label}</span>
@@ -212,9 +143,7 @@ function Field({
           error ? "border-destructive" : "border-border"
         }`}
       />
-      {error && (
-        <span className="mt-1 block text-xs text-destructive">{error}</span>
-      )}
+      {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}
     </label>
   );
 }
